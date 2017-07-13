@@ -1,0 +1,5 @@
+def testCases = context.testCase.testSuite.getTestCaseList()
+log.info("Number Test Cases Present :- "+testCases.size())
+testCases.each  {
+        log.info("Test Case Name :- "+it.name)
+}

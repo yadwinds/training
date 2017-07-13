@@ -1,0 +1,24 @@
+import com.eviware.soapui.impl.wsdl.teststeps.WsdlTestRequestStep
+
+def project = context.testCase.testSuite.project
+def testSuite = project.getTestSuiteAt(0)
+def testCase = testSuite.getTestCaseAt(0)
+
+def wsdlTestSteps = testCase.getTestStepsOfType(WsdlTestRequestStep.class)
+def testStepCount = wsdlTestSteps.size()
+
+(0..< testStepCount).each {	
+     // SOAP Response Not SOAP Fault
+	if (!(wsdlTestSteps[it].getAssertionByName("Not SOAP Fault")))
+     	wsdlTestSteps[it].addAssertion("Not SOAP Fault")
+
+     // Valid SOAP Message
+	if (!(wsdlTestSteps[it].getAssertionByName("SOAP Response")))
+	    wsdlTestSteps[it].addAssertion("SOAP Response")
+
+     // Complies with its related WSDL definition / XML Schema
+	if (!(wsdlTestSteps[it].getAssertionByName("Schema Compliance")))
+     	wsdlTestSteps[it].addAssertion("Schema Compliance")     
+
+	log.info("Assertion created into Teststep :: " + testCase.getTestStepByName(wsdlTestSteps[it].getName()).getName().toString())
+}	

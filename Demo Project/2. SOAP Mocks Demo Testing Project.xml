@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="110102b2-3a13-4b32-bc85-7645f13c636a" activeEnvironment="Default" name="2. SOAP Mocks Demo Testing Project" resourceRoot="" soapui-version="5.1.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="fb7d2893-879f-428e-b40a-567fdcbd59a7" wsaVersion="NONE" name="SampleServiceSoapBinding" type="wsdl" bindingName="{http://www.soapui.org/sample/}SampleServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="E:/Personal/Get Skills Training/Demo Project/Archive/sample-service.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/E:/Personal/Get%20Skills%20Training/Demo%20Project/Archive/sample-service.wsdl"><con:part><con:url>file:/E:/Personal/Get%20Skills%20Training/Demo%20Project/Archive/sample-service.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="sample" targetNamespace="http://www.soapui.org/sample/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.soapui.org/sample/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.soapui.org/sample/">
+      <xsd:element name="searchResponseContent">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="item" type="tns:ItemType" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ItemType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="price" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="buyResponseContent">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="purchasestatus" type="tns:PurchaseStatusType" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="PurchaseStatusType">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="stockStatus" type="xsd:string"/>
+          <xsd:element name="expectedDelivery" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="loginRequest">
+    <wsdl:part name="username" type="xsd:string"/>
+    <wsdl:part name="password" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+    <wsdl:part name="sessionid" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="logoutResponse">
+    <wsdl:part name="sessioninfo" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="logoutRequest">
+    <wsdl:part name="sessionid" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="searchRequest">
+    <wsdl:part name="sessionid" type="xsd:string"/>
+    <wsdl:part name="searchstring" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="searchResponse">
+    <wsdl:part name="searchresult" element="tns:searchResponseContent"/>
+  </wsdl:message>
+  <wsdl:message name="buyRequest">
+    <wsdl:part name="sessionid" type="xsd:string"/>
+    <wsdl:part name="buystring" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="buyResponse">
+    <wsdl:part name="buyresult" element="tns:buyResponseContent"/>
+  </wsdl:message>
+  <wsdl:message name="login_faultMsg">
+    <wsdl:part name="loginFault" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="logout_faultMsg">
+    <wsdl:part name="logoutFault" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="search_faultMsg">
+    <wsdl:part name="searchFault" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="buy_faultMsg">
+    <wsdl:part name="buyFault" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:portType name="ISampleService">
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginRequest"/>
+      <wsdl:output message="tns:loginResponse"/>
+      <wsdl:fault name="fault" message="tns:login_faultMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <wsdl:input message="tns:logoutRequest"/>
+      <wsdl:output message="tns:logoutResponse"/>
+      <wsdl:fault name="fault" message="tns:logout_faultMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <wsdl:input message="tns:searchRequest"/>
+      <wsdl:output message="tns:searchResponse"/>
+      <wsdl:fault name="fault" message="tns:search_faultMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="buy">
+      <wsdl:input message="tns:buyRequest"/>
+      <wsdl:output message="tns:buyResponse"/>
+      <wsdl:fault name="fault" message="tns:buy_faultMsg"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SampleServiceSoapBinding" type="tns:ISampleService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://www.soapui.org/sample/login"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault use="literal" name="fault"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="http://www.soapui.org/sample/logout"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault use="literal" name="fault"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <soap:operation soapAction="http://www.soapui.org/sample/search"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault use="literal" name="fault"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="buy">
+      <soap:operation soapAction="http://www.soapui.org/sample/buy"/>
+      <wsdl:input>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="http://www.soapui.org/sample/"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <soap:fault use="literal" name="fault"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SampleService">
+    <wsdl:port name="SamplePort" binding="tns:SampleServiceSoapBinding">
+      <soap:address location="http://www.soapui.org/sample"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8011/mockServiceDemo</con:endpoint><con:endpoint>http://www.soapui.org/sample</con:endpoint></con:endpoints><con:operation id="a0f53154-ec0d-4829-b357-babe1b7ad655" isOneWay="false" action="http://www.soapui.org/sample/buy" name="buy" bindingOperationName="buy" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6f82b7db-fa92-41e9-bd21-1e22b7de2049" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.soapui.org/sample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:buy>
+         <sessionid>?</sessionid>
+         <buystring>?</buystring>
+      </sam:buy>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/buy"/></con:call></con:operation><con:operation id="fe0d9c13-a380-49a9-a18a-f5c23b77e6c0" isOneWay="false" action="http://www.soapui.org/sample/login" name="login" bindingOperationName="login" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="59c5a568-165c-41ae-ac41-6f71054f513e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.soapui.org/sample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:login>
+         <username>?</username>
+         <password>?</password>
+      </sam:login>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/login"/></con:call></con:operation><con:operation id="6434a55b-fcb6-4667-a5ab-188f1a4226bd" isOneWay="false" action="http://www.soapui.org/sample/logout" name="logout" bindingOperationName="logout" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="423fd420-3952-4e45-8503-bd033b64b868" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.soapui.org/sample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:logout>
+         <sessionid>?</sessionid>
+      </sam:logout>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/logout"/></con:call></con:operation><con:operation id="536dd38a-a392-4cee-87d4-c3fa9b1b223e" isOneWay="false" action="http://www.soapui.org/sample/search" name="search" bindingOperationName="search" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f26e0f7e-9a6c-475e-9b3d-c1881ed1eb76" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.soapui.org/sample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:search>
+         <sessionid>?</sessionid>
+         <searchstring>?</searchstring>
+      </sam:search>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/search"/></con:call></con:operation></con:interface><con:testSuite id="e3fd129e-a740-43bb-9f6b-f6511e6da7e5" name="Service Test Suite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="067d2c64-9119-4d2e-bb0c-5f38c4fc7f96" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="buy TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="2252b27c-9926-4abd-a059-8498c34ed5f4" name="buy"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SampleServiceSoapBinding</con:interface><con:operation>buy</con:operation><con:request name="buy" id="2421c3b0-6737-4024-807f-a029fec15640"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8011/mockServiceDemo</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:buy>
+         <sessionid>11</sessionid>
+         <buystring>22</buystring>
+      </sam:buy>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Simple Contains" id="fd68a844-d7e8-45a3-8026-604aab75dd12" name="Contains"><con:configuration><token/><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="561dc968-5e9d-487b-9754-df3ad908325c" name="Contains 1"><con:configuration><token>PASS</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.soapui.org/sample/buy" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="6a0d5d15-2fac-4c72-af73-341d6409f17d" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="login TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="d196cb7f-c137-48df-bc2b-81dcd772977c" name="login"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SampleServiceSoapBinding</con:interface><con:operation>login</con:operation><con:request name="login" id="dddf6974-0ade-4f00-bfb3-c4c1e482b68d"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.soapui.org/sample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:login>
+         <username>?</username>
+         <password>?</password>
+      </sam:login>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://www.soapui.org/sample/login" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="b04d095f-a9e6-4645-9429-dea145ac22cb" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="logout TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="34406f88-eecc-402b-ac0b-4b0eb3582eb2" name="logout"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SampleServiceSoapBinding</con:interface><con:operation>logout</con:operation><con:request name="logout" id="06d77464-3228-42ee-b6a2-0f9d48b4f22d"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.soapui.org/sample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:logout>
+         <sessionid>?</sessionid>
+      </sam:logout>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.soapui.org/sample/logout"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:testCase id="009e9ef6-bff3-4740-8932-3eaf407a62f9" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="search TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="d39ac086-0094-48c3-9850-c9c85ea72a97" name="search"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SampleServiceSoapBinding</con:interface><con:operation>search</con:operation><con:request name="search" id="11438be2-14ca-4438-9a85-4ec198860a77"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://www.soapui.org/sample</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:search>
+         <sessionid>?</sessionid>
+         <searchstring>?</searchstring>
+      </sam:search>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://www.soapui.org/sample/search"/></con:request></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:mockService id="19f43eab-4941-4bb0-b42c-a79061f388ae" port="8011" path="/mockServiceDemo" name="SOAP  MOCK Service" host="localhost" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="buy" id="81dac1dc-7a86-44ac-8079-aff6a643f036" interface="SampleServiceSoapBinding" operation="buy"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="368345c3-e1f1-4061-ae04-8d085620401e" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:buyResponse>
+         <sam:buyResponseContent>
+            <!--1 or more repetitions:-->
+            <purchasestatus>
+               <id>TEST</id>
+               <stockStatus>PASSEF</stockStatus>
+               <expectedDelivery>Not Applicable</expectedDelivery>
+            </purchasestatus>
+         </sam:buyResponseContent>
+      </sam:buyResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/buy"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="login" id="0d9fbb37-7e1d-415c-b80d-e6e987836a88" interface="SampleServiceSoapBinding" operation="login"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="cfa44b30-0f8a-41d1-9b15-e6bdbbe7cd6d" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:loginResponse>
+         <sessionid>?</sessionid>
+      </sam:loginResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/login"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="logout" id="75dcbee7-921e-4cf6-8ec2-668c59d6a8b0" interface="SampleServiceSoapBinding" operation="logout"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="8dfd65a9-bdef-4a90-b7fe-a7d5b5e3fe47" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:logoutResponse>
+         <sessioninfo>?</sessioninfo>
+      </sam:logoutResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/logout"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="search" id="a70d2b8b-2639-4978-a3e9-c82e20c6ce06" interface="SampleServiceSoapBinding" operation="search"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="a1729e8a-1ca8-432f-bb58-a3bf0bde8ac7" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sam="http://www.soapui.org/sample/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sam:searchResponse>
+         <sam:searchResponseContent>
+            <!--1 or more repetitions:-->
+            <item>
+               <id>?</id>
+               <description>?</description>
+               <price>?</price>
+            </item>
+         </sam:searchResponseContent>
+      </sam:searchResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.soapui.org/sample/search"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:requirements/><con:properties/><con:afterLoadScript>// Start Mock Service	
+	mockServicesCount = project.getMockServiceCount() 
+		for (i in 0..(mockServicesCount-1)) {
+	if(project.getMockServiceAt(i).start().toString() != null)
+	{
+		
+	Name = project.getMockServiceAt(i).getName().toString()
+	log.info "$Name : Started Successfully"
+	
+	}
+	i++;
+}</con:afterLoadScript><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>

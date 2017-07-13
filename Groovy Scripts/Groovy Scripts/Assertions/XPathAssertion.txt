@@ -1,0 +1,9 @@
+def project = context.testCase.testSuite.project
+def testSuite = project.getTestSuiteByName("CountryInfoTestSuite")
+def testCase = testSuite.getTestCaseByName("CapitalCityTestCase")
+def testStep = testCase.getTestStepByName("CapitalCity")
+def assertionXpath = testStep.testRequest.addAssertion("XPath Match")
+assertionXpath.name = "XPathMatchAssertion"
+assertionXpath.setPath("declare namespace m=\"http://www.oorsprong.org/websamples.countryinfo\"//m:CapitalCityResult")
+assertionXpath.setExpectedContent("Wellington")
+assertionXpath.setAllowWildcards(true)

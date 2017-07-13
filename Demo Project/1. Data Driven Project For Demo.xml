@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="1. Data Driven Project For Demo" resourceRoot="${projectDir}" soapui-version="5.1.2" abortOnError="false" runType="SEQUENTIAL" id="44e5d9a9-21f4-408f-a010-69a6883ca8e2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:testSuite name="Data Driven Template Test Suite" id="f1bf2044-07a2-4ca5-9ae3-d17953662408"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase" searchProperties="true" id="d4ff6ba9-5761-401c-b954-90b25b1e5acc"><con:settings/><con:testStep type="groovy" name="Groovy Script Get Test Data Size" id="448780d8-69ba-4e5d-8144-dcdbb7c5d0e4"><con:settings/><con:config><script>log.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Starting Groovy Script Get Test Data Size Run "+testRunner.testCase.name+"  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    "
+
+//############################################################## Header ##########################################################################################################
+// Test Script Name                : 
+// Author                                                          : 
+// Brief objective                      :  
+// Assumptions or limitations if any: 
+// Service Contract Reference            : 
+// Date Created                                   : 
+// Revision History : 
+//
+//################################################################################################################################################################################
+
+import com.eviware.soapui.support.XmlHolder
+
+
+//============================================= Variable Definitions =========================================================================================
+def global = com.eviware.soapui.SoapUI.globalProperties
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context ) 
+
+def TestDataFile =  new File("E://Personal/Get Skills Training/Demo Project/Test_Data.csv")
+def GetData = TestDataFile.readLines()
+def RowCount = GetData.size()
+log.info "Total Number of Rows : " + RowCount
+
+	//Read Number of rows from the TestData File
+	int i = 0
+	int ColumnCount = 3 // Initial Variables or Parameters
+	testRunner.testCase.setPropertyValue( 'RowCount',RowCount.toString() );
+	testRunner.testCase.setPropertyValue( 'ColumnCount', ColumnCount.toString() );
+
+	// Set the Total Test Cases and Test Step counter
+	testRunner.testCase.setPropertyValue( 'Test_Case_Counter', '0' );
+	testRunner.testCase.setPropertyValue( 'Total_No_Of_Tests', RowCount.toString() );
+	testRunner.testCase.setPropertyValue( 'Test_Case_Counter','0')
+	log.info "Set Test_Case_Counter to 0"
+	//TestDataFile.close()
+// generate a random and unique number
+log.info System.currentTimeMillis()+ ((int)(Math.random()*100))	
+log.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Ending Groovy Script Get Test Data Size Run "+testRunner.testCase.name+"  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    "
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script Driver" id="f557960d-2e03-4827-87e1-d6974ca4b4b8"><con:settings/><con:config><script>log.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Starting Groovy Script Driver Run "+testRunner.testCase.name+"  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    "
+
+//############################################################## Header ##########################################################################################################
+// Test Script Name                : 
+// Author                                                          : 
+// Brief objective                      :  
+// Assumptions or limitations if any: 
+// Service Contract Reference            : 
+// Date Created                                   : 
+// Revision History : 
+//
+//################################################################################################################################################################################
+
+import com.eviware.soapui.support.XmlHolder
+
+
+//============================================= Variable Definitions =========================================================================================
+def global = com.eviware.soapui.SoapUI.globalProperties
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context ) 
+
+def TestDataFile =  new File("E://Personal/Get Skills Training/Demo Project/Test_Data.csv")
+
+	RowCount = testRunner.testCase.getPropertyValue( 'RowCount').toInteger();
+	ColumnCount = testRunner.testCase.getPropertyValue( 'ColumnCount' ).toInteger();
+
+	
+//Read All rows from the TestData File
+int i = 0
+
+	String[] Array1
+	String[][] Value = new String[ColumnCount]
+	String[][] Param = new String[ColumnCount]
+	String[] Parameter= new String[ColumnCount]
+	//String[]Param1 = {"Sl No","Test_Case_Name","IL_REQ_GROUP","ITEM_NAME","ITEM_VERSION","TRANSACTION_NAME","BITSTREAM_LOCATION_ID","BITSTREAM_SLA_LEVEL","DATAOVC1_CIRCUIT_ID_INSERTION","DATAOVC1_HANDOVER_CVLAN","DATAOVC1_HANDOVER_SVLAN","DATAOVC1_UNI_VLAN","GPONPATH_TRANSACTION_TYPE","GPONPATH_WORKFORCE_MANAGEMENT_TASKS","ONT_TRANSACTION_TYPE","ONT_WORKFORCE_MANAGEMENT_TASKS","ORDER_EXTERNAL ORDER ID","ORDER_EXTERNAL_PRODUCT_ID","ORDER_ORDER_NOTES","ORDER_RFS_DATE","ORDER_RSP_CONTACT_NAME","ORDER_RSP_CONTACT_NUMBER","ORDER_RSP_ID","ORDER_RSP_NAME","ORDER_RSP_REFERENCE_ID","UNI1_TAGGING_MODE","VOICEOVC1_HANDOVER_CVLAN","VOICEOVC1_HANDOVER_SVLAN"}
+
+ 	//Parameter = testRunner.testCase.getPropertyValue( "Param_Names").toString().split(",")
+	//String[][] Param = new String[RowCount][ColumnCount]
+
+	// Set the Total Test Cases and Test Step counter
+	
+	Old_Test_Case_Counter = testRunner.testCase.getPropertyValue( 'Test_Case_Counter');
+	Test_Case_Counter = Old_Test_Case_Counter.toInteger() + 1
+	
+	testRunner.testCase.setPropertyValue( 'Test_Case_Counter',Test_Case_Counter.toString());
+	i = 	Old_Test_Case_Counter.toInteger()
+
+if (i &lt; RowCount)
+{
+	log.info "line Number is : " + i
+	LineContent = TestDataFile.readLines().get(i).split(",")
+	log.info "Line Content is : " + LineContent.toString()
+	int ColumntCount = LineContent.size()
+	log.info "Total Number of Columns are : " + ColumnCount
+	j = 0
+	//define two dimentional array
+	Value = new String[RowCount][ColumnCount]
+	
+	while (j &lt; ColumnCount-1)
+	{
+		
+		if(i == 0)
+		{
+
+			testRunner.testCase.setPropertyValue( "Param_Names",LineContent.toString())
+			G = LineContent[j].toString()
+			global.setPropertyValue(G,"-")
+			Value[i][j] = LineContent[j].toString()
+			log.info "########## Value[$i][$j] = "+LineContent[j]
+			
+		}
+		
+		if(i > 0)
+		{
+				Value[i][j] = LineContent[j].toString()
+				log.info "########## Value[$i][$j] = "+LineContent[j]
+			
+		}
+		j = j+1
+		
+	}
+
+}
+
+
+
+
+log.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Ending Groovy Script Driver Run "+testRunner.testCase.name+"  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    "
+
+</script></con:config></con:testStep><con:testStep type="delay" name="Delay" disabled="true" id="849004ec-fd95-4b57-881a-eb1e415601da"><con:settings/><con:config><delay>1000</delay></con:config></con:testStep><con:testStep type="properties" name="Properties" disabled="true" id="6d3be749-85d8-4f8a-a994-1ca62ba20171"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>RequestId</con:name><con:value>71214</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="Database Connection" id="c0fee32e-caa6-4cbf-8b31-5cb2e54447eb" disabled="true"><con:settings/><con:config><script>import groovy.sql.Sql;
+
+
+//Establish JDBC Connection to the DB
+def  con = Sql.newInstance("jdbc:oracle:thin:@&lt;dbserver url>:&lt;port>:&lt;SID>", "&lt;db user name>", "&lt;db password>", "oracle.jdbc.driver.OracleDriver");
+
+
+
+def res = con.rows("SELECT sysdate FROM dual")
+
+
+log.info(res[0].sysdate.toString())
+
+
+con.close()</script></con:config></con:testStep><con:testStep type="groovy" name="Using External Java utilities and report Groovy Script" id="4ff9cac7-ca05-4157-93a9-79190c6a9d96" disabled="true"><con:settings/><con:config><script>import GroovyLibrary.*;
+/*
+import groovy.xml.MarkupBuilder
+import org.custommonkey.xmlunit.*
+import groovy.util.slurpersupport.Node
+import groovy.util.slurpersupport.NodeChild
+import groovy.xml.*
+import com.eviware.soapui.impl.wsdl.*
+import com.eviware.soapui.*
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.support.StringUtils
+import java.lang.Object
+*/
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )  
+def File_Name_Prefix = "E://Personal/Get Skills Training/Demo Project/TestResults"+"/"
+
+def TestResultFileName = File_Name_Prefix+"Test_Results.txt"
+
+def Java_Log_Handler_Instance = new GroovyLibrary();
+
+Java_Log_Handler_Instance.Write_To_File(TestResultFileName," 1.  Request Name	: ");
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script Reporter" id="1c961646-8462-411a-96d9-8cc64378b01e"><con:settings/><con:config><script>log.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Starting Groovy Script Get Test Data Size Run "+testRunner.testCase.name+"  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    "
+
+//############################################################## Header ##########################################################################################################
+// Test Script Name                : 
+// Author                                                          : 
+// Brief objective                      :  
+// Assumptions or limitations if any: 
+// Service Contract Reference            : 
+// Date Created                                   : 
+// Revision History : 
+//
+//################################################################################################################################################################################
+
+import com.eviware.soapui.support.XmlHolder
+
+
+//============================================= Variable Definitions =========================================================================================
+def global = com.eviware.soapui.SoapUI.globalProperties
+
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context ) 
+RowCount = testRunner.testCase.getPropertyValue( 'RowCount').toInteger();
+Test_Case_Counter = testRunner.testCase.getPropertyValue( 'Test_Case_Counter').toInteger();
+def TestDataFile =  new File("E://Personal/Get Skills Training/Demo Project/Test_Data.csv")
+def TestResultFile =  new File("E://Personal/Get Skills Training/Demo Project//Test_Results.csv")
+
+if (Test_Case_Counter &lt; RowCount)
+{
+	
+	Test_Result = TestDataFile.readLines().get(Test_Case_Counter.toInteger())//.add(3,"PASSED") 
+	
+	Test_Result = Test_Result+",PASSED"
+	
+	log.info Test_Result
+	
+	//Test_Result = "Passed"//TestDataFile.readLines().get(Old_Test_Case_Counter.toInteger()).add(1,"PASSED") 
+	//Old_Test_Case_Counter.toInteger()).add(33,"PASSD")//global.getPropertyValue('${Request_ID_Returned_By_Service}'))
+	//Test_result_Final= Test_Result.toString()+"_"+"PASSED"
+	//TestResultFile.write("PASSED" ) //Test_result_Final.toString())
+	TestResultFile.append(Test_Result)
+
+}
+</script></con:config></con:testStep><con:testStep type="groovy" name="DataSource Loop" id="f4366b78-6c5b-4151-b812-dcfb7b03ed0e"><con:settings/><con:config><script>if (testRunner.testCase.getPropertyValue( 'Test_Case_Counter').toInteger() &lt; testRunner.testCase.getPropertyValue( 'Total_No_Of_Tests').toInteger())
+{
+     testRunner.gotoStepByName("Groovy Script Driver")
+}
+</script></con:config></con:testStep><con:testStep type="properties" name="Properties 1" id="30ccc382-1787-41cd-b5f4-aa762b7a10e6"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>script</con:name></con:property></con:properties></con:config></con:testStep><con:properties><con:property><con:name>RowCount</con:name><con:value>11</con:value></con:property><con:property><con:name>ColumnCount</con:name><con:value>3</con:value></con:property><con:property><con:name>Test_Case_Counter</con:name><con:value>11</con:value></con:property><con:property><con:name>Total_No_Of_Tests</con:name><con:value>11</con:value></con:property><con:property><con:name>Param_Names</con:name><con:value>[Tes Number, ClientNumber]</con:value></con:property></con:properties><con:reportParameters/><con:breakPoints><con:testStepId>c0fee32e-caa6-4cbf-8b31-5cb2e54447eb</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>4ff9cac7-ca05-4157-93a9-79190c6a9d96</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:afterLoadScript>// Start Mock Service	
+	mockServicesCount = project.getMockServiceCount() 
+		for (i in 0..(mockServicesCount-1)) {
+	if(project.getMockServiceAt(i).start().toString() != null)
+	{
+		
+	Name = project.getMockServiceAt(i).getName().toString()
+	log.info "$Name : Started Successfully"
+	
+	}
+	i++;
+}</con:afterLoadScript><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/><con:authRepository/></con:soapui-project>

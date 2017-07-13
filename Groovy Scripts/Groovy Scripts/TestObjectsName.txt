@@ -1,0 +1,22 @@
+//Get Using soapUI buit-in variables
+
+//Test Case Name 
+log.info("Test Case using testRunner - "+testRunner.testCase.name)
+log.info(context.getTestCase().name)
+log.info(context.testCase.name)
+
+//Test Suite Name 
+log.info(context.testCase.testSuite.name)
+log.info(context.getTestCase().getTestSuite().name)
+log.info(testRunner.testCase.testSuite.name)
+
+//Project Name
+log.info(context.testCase.project.name)
+log.info(context.testCase.testSuite.project.name)
+log.info(context.getTestCase().getProject().name)
+log.info(context.getTestCase().getTestSuite().getProject().name)
+log.info(testRunner.testCase.project.name)
+log.info(testRunner.getTestCase().getProject().name)
+log.info(testRunner.testCase.testSuite.project.name)
+log.info(testRunner.getTestCase().getTestSuite().getProject().name)
+

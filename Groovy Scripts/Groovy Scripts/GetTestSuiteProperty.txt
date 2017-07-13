@@ -1,0 +1,5 @@
+def testSuitePropValue1 = testRunner.testCase.testSuite.getPropertyValue("TestSuiteProp1")
+log.info(testSuitePropValue1)
+
+def testSuitePropValue2 = context.getTestCase().getTestSuite().getPropertyValue("TestSuiteProp2")
+log.info(testSuitePropValue2)

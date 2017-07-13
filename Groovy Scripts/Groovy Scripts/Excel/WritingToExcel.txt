@@ -1,0 +1,13 @@
+//Writes CountryCd, CapitalCity, ZipCd from property to excel
+import java.io.File
+import jxl.*
+import jxl.write.*
+
+WritableWorkbook wb = Workbook.createWorkbook(new File("C:\\Users\\user\\Desktop\\Input_Excel\\output_data.xls"))
+WritableSheet sheet = wb.createSheet("First Sheet", 0)
+
+res = testRunner.testCase.getPropertyValue("CountryCode")
+Label label = new Label(0,0,res)
+sheet.addCell(label)
+wb.write()
+wb.close()

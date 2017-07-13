@@ -1,0 +1,2 @@
+testRunner.testCase.testSuite.project.setPropertyValue("ProjectProp1"," ProjectProp1 Value")
+context.getTestCase().getTestSuite().getProject().setPropertyValue("ProjectProp2", " ProjectProp2 Value")

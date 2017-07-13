@@ -1,0 +1,11 @@
+import com.eviware.soapui.support.GroovyUtils
+import groovy.xml.Namespace
+
+//def xml = "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><m:CapitalCityResponse xmlns:m=\"http://www.oorsprong.org/websamples.countryinfo\"><m:CapitalCityResult>Wellington</m:CapitalCityResult><m:CapitalCityResult>Auckland</m:CapitalCityResult><m:CapitalCityResult>Hamilton</m:CapitalCityResult></m:CapitalCityResponse></soap:Body></soap:Envelope>"
+def groovyUtils = new GroovyUtils(context);
+def responseHolder = groovyUtils.getXmlHolder(testRunner.testCase.testSteps["CapitalCity"].testRequest.response.responseContent)
+def responseXml = new XmlParser().parseText(responseHolder.getXml())
+def soapns = new Namespace("http://schemas.xmlsoap.org/soap/envelope/",'soap')
+def mns = new Namespace("http://www.oorsprong.org/websamples.countryinfo",'m')
+def city = responseXml[soapns.Body][mns.CapitalCityResponse][mns.CapitalCityResult][0].value().text()
+assert city == 'Wellington'

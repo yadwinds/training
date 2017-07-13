@@ -1,0 +1,5 @@
+def getProjectsList = testRunner.testCase.testSuite.project.workspace.getProjectList()
+log.info("Number of Projects - " +getProjectsList.size)
+for(i in 0..getProjectsList.size-1 ){
+        log.info("Project name :- "+getProjectsList.getAt(i).name)
+}

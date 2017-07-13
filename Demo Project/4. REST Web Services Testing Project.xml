@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="4. Sample REST Mocks Project" resourceRoot="" soapui-version="5.1.2" abortOnError="false" runType="SEQUENTIAL" id="85047e69-64d4-4e92-a2fb-7831f3a072e0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" wadlVersion="http://research.sun.com/wadl/2006/10" name="Account creation" type="rest" basePath="/" definitionUrl="WSDL-WADL/sample-service.wadl" id="9115ad3e-0053-4810-a9ae-3d5f08d4c70f" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings/>
+    
+    <con:definitionCache type="TEXT"/><con:endpoints>
+      <con:endpoint>http://localhost:8080</con:endpoint>
+    </con:endpoints>
+    <con:resource name="accountcreation" path="accountcreation" id="c14a8848-6adc-444b-88ea-e121a8a44a37">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="Register a new account - viewAccountRegistration" method="GET" id="dca001d5-d3e2-4119-9146-2aa612e97d5e">
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="RESPONSE" id="">
+          <con:mediaType>text/html</con:mediaType>
+          <con:params/>
+          <con:element xsi:nil="true"/>
+          <con:description xsi:nil="true"/>
+        </con:representation>
+        <con:request name="Registration Form" mediaType="application/json" id="8f88f6b6-2d31-4d90-8fbd-0aa61dd502c0">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:8080</con:endpoint>
+          <con:request/>
+          <con:originalUri>http://localhost/accountcreation</con:originalUri>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+      <con:method name="Register a new account - createUserAccount" method="POST" id="a4e25b46-cb13-4d2b-92fe-1bc4f47cc2ca">
+        <con:settings/>
+        <con:parameters>
+          <con:parameter>
+            <con:name>username</con:name>
+            <con:value xsi:nil="true"/>
+            <con:style>QUERY</con:style>
+            <con:default xsi:nil="true"/>
+          </con:parameter>
+          <con:parameter>
+            <con:name>password</con:name>
+            <con:value xsi:nil="true"/>
+            <con:style>QUERY</con:style>
+            <con:default xsi:nil="true"/>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="REQUEST" id="">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+          <con:element xsi:nil="true"/>
+          <con:description xsi:nil="true"/>
+        </con:representation>
+        <con:representation type="RESPONSE" id="">
+          <con:mediaType>text/html</con:mediaType>
+          <con:params/>
+          <con:element xsi:nil="true"/>
+          <con:description xsi:nil="true"/>
+        </con:representation>
+        <con:request name="Submit Registration Form" mediaType="application/json" postQueryString="false" id="1cd607f0-356b-4c94-bbd5-48b0266b382f">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:8080</con:endpoint>
+          <con:request/>
+          <con:originalUri>http://localhost/accountcreation</con:originalUri>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:jmsPropertyConfig/>
+          <con:parameters>
+            <con:entry key="username" value="john"/>
+            <con:entry key="password" value="w0j39av0d8s"/>
+          </con:parameters>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:testSuite name="Test account creation" id="b951a5db-4d76-4671-a659-b9d41c5dd1f4">
+    <con:description>TestSuite generated for REST Service [Sample REST project (5.0)]</con:description>
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="accountcreation TestCase" searchProperties="true" id="3923f7a8-171b-45cc-9b5d-a50bfa715f0a">
+      <con:description>TestCase generated for REST Resource [accountcreation] located at [/accountcreation]</con:description>
+      <con:settings/>
+      <con:testStep type="restrequest" name="View Form" id="24bc4232-a765-4f4a-af23-a81090e0e975">
+        <con:settings/>
+        <con:config service="Account creation" resourcePath="/accountcreation" methodName="Register a new account - viewAccountRegistration" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="View Form" mediaType="application/json" id="ffd420d7-ceb0-4db9-844e-a5edfe370c0f">
+            <con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings>
+            <con:endpoint>http://localhost:8080</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/accountcreation</con:originalUri><con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Submit Account Details" id="2627cda4-b57e-412f-925e-37f383fe1a49">
+        <con:settings/>
+        <con:config service="Account creation" resourcePath="/accountcreation" methodName="Register a new account - createUserAccount" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Submit Account Details" mediaType="application/json" postQueryString="false" id="5f01ea81-593c-42b7-9fd3-8e7b565855f0">
+            <con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings>
+            <con:endpoint>http://localhost:8080</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://localhost/accountcreation</con:originalUri><con:credentials>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:jmsPropertyConfig/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+    <con:reportParameters/></con:testCase>
+    <con:properties/>
+  <con:reportParameters/></con:testSuite>
+  <con:restMockService port="8080" path="/" name="Account creation mock" host="localhost" id="680e1bb5-e089-4dd1-be75-eeb6561ceaa8" docroot="">
+    <con:settings/>
+    <con:properties/>
+    <con:restMockAction name="accountcreation" method="GET" resourcePath="/accountcreation" id="75b6c11a-189e-4b8d-91db-02b3b6ef704a">
+      <con:settings/>
+      <con:defaultResponse>Form view</con:defaultResponse>
+      <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+      <con:response name="Form View" httpResponseStatus="200" mediaType="text/html" id="fa1074fb-6020-4928-a7de-52c4d6d0e5ef">
+        <con:settings/>
+        <con:responseContent><![CDATA[<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Account registration</title>
+		<meta name="description" content="SoapUI Sample content">
+	</head>
+
+	<body>
+  		<h1>Welcome!</h1>
+  		<form action="accountcreation" method="post" name="account_registration_form">
+  			<input type="text" name="username" placeholder="John Doe" />
+			<input type="password" name="password" />
+			<input type="submit" name="password" />
+		</form>
+  	</body>
+</html>]]></con:responseContent>
+      </con:response>
+    </con:restMockAction>
+    <con:restMockAction name="accountcreation" method="POST" resourcePath="/accountcreation" id="cda546a4-e387-4d15-98ae-13f92b15a8f0">
+      <con:settings/>
+      <con:defaultResponse>Successful</con:defaultResponse>
+      <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+      <con:response name="Successful" httpResponseStatus="200" mediaType="text/html" id="4962b99c-0c84-4e48-a95e-678ad9258509">
+        <con:settings/>
+        <con:responseContent><![CDATA[<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Account registration</title>
+		<meta name="description" content="SoapUI Sample content"/>
+	</head>
+
+	<body>
+  		<h1>Welcome!</h1>
+  		<p>You have successfully registered your account!</p>
+	</body>
+</html>]]></con:responseContent>
+      </con:response>
+      <con:response name="Already Existing User" httpResponseStatus="200" mediaType="text/html" id="67263f8d-d088-428b-8de0-4a59e29a7af4">
+        <con:settings/>
+        <con:responseContent><![CDATA[<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Account registration</title>
+		<meta name="description" content="SoapUI Sample content">
+	</head>
+
+	<body>
+  		<h1>User already exists</h1>
+  		<p>A user has already registered with the selected username - try another.</p>
+	</body>
+</html>]]></con:responseContent>
+      </con:response>
+      <con:response name="Internal Server Error" httpResponseStatus="500" mediaType="text/html" id="dcd0db0e-93ab-474a-89e4-a068d765edd3">
+        <con:settings/>
+        <con:responseContent><![CDATA[<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Internal Server Error</title>
+		<meta name="description" content="SoapUI Sample content"/>
+	</head>
+
+	<body>
+  		<h1>The server was unable to serve your request</h1>
+  		<p>Due to some technical error the server was unable to complete the request, pleas come back later.</p>
+	</body>
+</html>]]></con:responseContent>
+      </con:response>
+    </con:restMockAction>
+  </con:restMockService>
+  <con:requirements/><con:properties/>
+  <con:afterLoadScript>// Start Mock Service	
+	mockServicesCount = project.getMockServiceCount() 
+	log.info mockServicesCount
+		for (i in 0..(mockServicesCount-1)) {
+	if(project.getMockServiceAt(i).start().toString() != null)
+	{
+		
+	Name = project.getMockServiceAt(i).getName().toString()
+	log.info "$Name : Started Successfully"
+	
+	}
+	i++;
+}</con:afterLoadScript><con:wssContainer/>
+  <con:databaseConnectionContainer/><con:oAuth2ProfileContainer/>
+  <con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/>
+</con:soapui-project>

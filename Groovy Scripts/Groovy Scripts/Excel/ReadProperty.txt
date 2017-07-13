@@ -1,0 +1,2 @@
+def var = context.expand('${#TestCase#CountryCode}')
+log.info var

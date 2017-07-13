@@ -1,0 +1,5 @@
+def projPropValue = testRunner.testCase.testSuite.project.getPropertyValue("ProjectProp1")
+log.info(projPropValue)
+
+def projPropValue1 = context.getTestCase().getTestSuite().getProject().getPropertyValue("ProjectProp2")
+log.info(projPropValue1)

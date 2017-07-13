@@ -1,0 +1,23 @@
+//Reads CountryCd from excel and sets to a property at testCase level
+import java.io.File
+import java.util.Date
+import jxl.*
+
+Workbook wb = Workbook.getWorkbook(new File("C:\\Users\\user\\Desktop\\Input_Excel\\input_data.xls"))
+Sheet sh = wb.getSheet(0)
+rc = sh.getRows()
+log.info "Row Count - "+rc
+cc = sh.getColumns()
+log.info "Column Count - "+cc
+for(i=0;i<rc;i++)
+{
+	for(j=0;j<cc;j++)
+	{
+		Cell cl = sh.getCell(j,i)
+		val = cl.getContents()
+		if(j==0)
+			testRunner.testCase.setPropertyValue("CountryCode", val)
+		log.info val
+	}
+}
+wb.close()

@@ -1,0 +1,3 @@
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+def reqHolder = groovyUtils.getXmlHolder(Request).toString()
+log.info reqHolder

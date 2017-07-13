@@ -1,0 +1,9 @@
+def project = context.testCase.testSuite.project
+def testSuite = project.getTestSuiteByName("CountryInfoTestSuite")
+def testCase = testSuite.getTestCaseByName("CapitalCityTestCase")
+def testStep = testCase.getTestStepByName("CapitalCity")
+def assertionNotContains = testStep.testRequest.addAssertion("Not Contains")
+
+assertionNotContains.name = "AssertNotContains"
+assertionNotContains.setToken("Auckland")
+assertionNotContains.setIgnoreCase(true)

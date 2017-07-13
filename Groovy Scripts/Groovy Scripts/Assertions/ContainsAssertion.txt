@@ -1,0 +1,11 @@
+//def assertioncontains = testRunner.testCase.testSteps["CapitalCity"].testRequest.addAssertion("Contains")
+def project = context.testCase.testSuite.project
+def testSuite = project.getTestSuiteByName("CountryInfoTestSuite")// or use getTestSuiteAt(0)
+def testCase = testSuite.getTestCaseByName("CapitalCityTestCase")
+def testStep = testCase.getTestStepByName("CapitalCity")
+def assertionContains = testStep.testRequest.addAssertion("Contains")
+
+assertionContains.name = "AssertContains"
+assertionContains.setToken("Wellington")
+assertionContains.setIgnoreCase(true)
+//assertioncontains.setUseRegEx(true)

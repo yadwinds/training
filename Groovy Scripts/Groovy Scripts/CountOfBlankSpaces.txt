@@ -1,0 +1,4 @@
+def val = "Groovy Scripting Language is used for SOAPUI"
+def sval = val.replaceAll(" ","")
+def sCount =  val.size() - sval.size()
+ log.info("Count of Blank (' ') spaces is = $sCount")
